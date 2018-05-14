@@ -13,6 +13,6 @@ COPY html/  /var/nginx/html/
 
 WORKDIR  /var/nginx/html
 
-CMD ["sh","-c","sed -i s/%_HOSTNAME_%/$HOSTNAME/ /var/nginx/html/index.html && nginx -g 'daemon off;'"]
+CMD ["sh","-c","if [ -f '/var/nginx/html/index.html' ];then sed -i s/%_HOSTNAME_%/$HOSTNAME/ /var/nginx/html/index.html; fi && nginx -g 'daemon off;'"]
 
 EXPOSE 80
